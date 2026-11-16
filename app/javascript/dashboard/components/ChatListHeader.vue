@@ -17,6 +17,7 @@ const props = defineProps({
   isOnExpandedLayout: { type: Boolean, required: true },
   conversationStats: { type: Object, required: true },
   isListLoading: { type: Boolean, required: true },
+  isAgendaView: { type: Boolean, default: false },
 });
 
 const emit = defineEmits([
@@ -170,7 +171,7 @@ const toggleConversationLayout = () => {
         />
       </div>
       <ConversationBasicFilter
-        v-if="!isContactScoped"
+        v-if="!isContactScoped && !isAgendaView"
         :is-on-expanded-layout="isOnExpandedLayout"
         :show-status-filter="!hasAppliedFiltersOrActiveFolders"
         @change-filter="onBasicFilterChange"

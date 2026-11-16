@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 12488)
+Total output lines: 1128
+
 {
   "PROFILE_SETTINGS": {
     "LINK": "Ajustes del perfil",
@@ -253,6 +256,7 @@
     "YEAR_IN_REVIEW": "Resumen del año",
     "KEYBOARD_SHORTCUTS": "Atajos de teclado",
     "APPEARANCE": "Cambiar apariencia",
+    "COLOR_THEME": "Cambiar tema de color",
     "SUPER_ADMIN_CONSOLE": "Consola SuperAdmin",
     "DOCS": "Leer la documentación",
     "CHANGELOG": "Notas de versión",
@@ -323,6 +327,7 @@
     "SWITCH": "Cambiar",
     "INBOX_VIEW": "Vista del buzón",
     "CONVERSATIONS": "Conversaciones",
+    "AGENDA": "Agenda de pendientes",
     "INBOX": "Mi bandeja de entrada",
     "ALL_CONVERSATIONS": "Todas las conversaciones",
     "MENTIONED_CONVERSATIONS": "Menciones",
@@ -501,50 +506,7 @@
       "PROGRESS_WITHOUT_TOTAL": "{imported} importados",
       "PROGRESS_OF_TOTAL": "de {total} importados",
       "PROGRESS_IMPORTED": "importado",
-      "LAST_UPDATED_TOOLTIP": "Última actualización {time}",
-      "NO_SKIP_LOGS": "No se han grabado registros saltados o fallidos.",
-      "DOWNLOAD_SKIP_LOGS": "Descargar CSV",
-      "DOWNLOAD_ERROR_LOGS": "Descargar CSV",
-      "ALL_SKIP_LOGS": "Todos",
-      "KIND": "Clase",
-      "NO_ERRORS": "No se han registrado errores.",
-      "ERROR_CODE": "Código",
-      "SOURCE_OBJECT": "Objeto origen",
-      "MESSAGE": "Mensaje"
-    },
-    "MONITOR": {
-      "LIVE": "Actualizaciones en vivo cada {seconds}s",
-      "LAST_UPDATED": "Última actualización {time}",
-      "REFRESH": "Actualizar",
-      "REFRESHING": "Actualizando",
-      "STAGES": {
-        "unknown": "Esperando actualización",
-        "queued": "En cola",
-        "contacts": "Importando contactos",
-        "conversations": "Importando conversaciones",
-        "finalizing": "Finalizando importación",
-        "completed": "Completado",
-        "completed_with_errors": "Completado con errores",
-        "failed": "Fallido",
-        "abandoned": "Abandonado"
-      }
-    },
-    "ALERTS": {
-      "IMPORT_STARTED": "La importación ha comenzado.",
-      "IMPORT_RETRIED": "La importación se ha añadido a la cola para reanudarse.",
-      "IMPORT_RETRY_FAILED": "No se pudo reintentar la importación.",
-      "IMPORT_ABANDONED": "La importación se ha abandonado.",
-      "IMPORT_FAILED": "No se pudo iniciar la importación."
-    }
-  },
-  "CAPTAIN_SETTINGS": {
-    "TITLE": "Captain Settings",
-    "DESCRIPTION": "Configure your AI models and features for Captain. Captain follows a credit based billing, you will be charged credits for every action Captain takes based on the model selected.",
-    "LOADING": "Loading Captain configuration...",
-    "LINK_TEXT": "Learn more about Captain Credits",
-    "NOT_ENABLED": "Captain is not enabled for your account. Please upgrade your plan to access Captain features.",
-    "MODEL_CONFIG": {
-      "TITLE": "Model Configuration",
+…488 tokens truncated…,
       "DESCRIPTION": "Select AI models for different features.",
       "SELECT_MODEL": "Select model",
       "CREDITS_PER_MESSAGE": "{credits} credit/message",

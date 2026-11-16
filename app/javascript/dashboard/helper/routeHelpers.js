@@ -108,6 +108,7 @@ export const isAConversationRoute = (
     'team_conversations',
     'folder_conversations',
     'conversation_participating',
+    'conversation_agenda',
   ];
   const extendedRoutes = [
     'inbox_conversation',
@@ -118,6 +119,7 @@ export const isAConversationRoute = (
     'conversations_through_team',
     'conversations_through_folders',
     'conversation_through_participating',
+    'conversation_through_agenda',
   ];
 
   const routes = [
@@ -136,6 +138,8 @@ export const getConversationDashboardRoute = routeName => {
       return 'conversation_mentions';
     case 'conversation_through_unattended':
       return 'conversation_unattended';
+    case 'conversation_through_agenda':
+      return 'conversation_agenda';
     case 'conversations_through_label':
       return 'label_conversations';
     case 'conversations_through_team':

@@ -414,6 +414,13 @@ const menuItems = computed(() => {
           to: accountScopedRoute('conversation_participating'),
         },
         {
+          name: 'Agenda',
+          label: t('SIDEBAR.AGENDA'),
+          icon: 'i-lucide-calendar-clock',
+          activeOn: ['conversation_agenda', 'conversation_through_agenda'],
+          to: accountScopedRoute('conversation_agenda'),
+        },
+        {
           name: 'Unattended',
           activeOn: ['conversation_through_unattended'],
           label: t('SIDEBAR.UNATTENDED_CONVERSATIONS'),
@@ -967,7 +974,6 @@ const menuItems = computed(() => {
     },
   ];
 
-  const inboxItem = allItems.find(item => item.name === 'Inbox');
   const conversationsItem = allItems.find(
     item => item.name === 'Conversation'
   );
@@ -985,11 +991,10 @@ const menuItems = computed(() => {
       to: accountScopedRoute('account_overview_reports'),
       activeOn: ['account_overview_reports'],
     },
-    inboxItem,
     {
       ...conversationsItem,
       children: conversationsItem.children.filter(item =>
-        ['All', 'Unattended', 'Teams', 'Channels'].includes(item.name)
+        ['All', 'Agenda', 'Teams', 'Channels'].includes(item.name)
       ),
     },
     {

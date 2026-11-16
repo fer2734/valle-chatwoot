@@ -4,6 +4,7 @@ export const LOCAL_STORAGE_KEYS = {
   WIDGET_BUILDER: 'widgetBubble_',
   DRAFT_MESSAGES: 'draftMessages',
   COLOR_SCHEME: 'color_scheme',
+  COLOR_THEME: 'color_theme',
   MESSAGE_REPLY_TO: 'messageReplyTo',
   RECENT_SEARCHES: 'recentSearches',
   SIDEBAR_MINIMIZED_SECTIONS: 'sidebarMinimizedSections',

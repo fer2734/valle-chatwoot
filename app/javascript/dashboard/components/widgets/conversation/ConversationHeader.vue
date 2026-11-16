@@ -50,13 +50,16 @@ const backButtonUrl = computed(() => {
     conversation_through_mentions: 'mention',
     conversation_through_participating: 'participating',
     conversation_through_unattended: 'unattended',
+    conversation_through_agenda: 'agenda',
   };
+  const conversationType = conversationTypeMap[name];
   return conversationListPageURL({
     accountId: accountId.value,
     inboxId,
     label,
     teamId,
-    conversationType: conversationTypeMap[name],
+    // Agenda must remain the list context even though its API status is snoozed.
+    conversationType: conversationType || undefined,
     customViewId,
   });
 });

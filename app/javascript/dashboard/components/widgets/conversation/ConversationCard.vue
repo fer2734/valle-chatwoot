@@ -12,6 +12,7 @@ import UnreadBadge from 'dashboard/components-next/Conversation/ConversationCard
 import SLACardLabel from './components/SLACardLabel.vue';
 import VoiceCallStatus from './VoiceCallStatus.vue';
 import Checkbox from 'dashboard/components-next/checkbox/Checkbox.vue';
+import { snoozedReopenTime } from 'dashboard/helper/snoozeHelpers';
 
 const props = defineProps({
   chat: { type: Object, required: true },
@@ -178,6 +179,13 @@ watch(
           />
         </div>
       </div>
+      <p
+        v-if="chat.status === 'snoozed' && chat.snoozed_until"
+        class="mx-2 mt-1 text-xs text-n-blue-11"
+      >
+        <span class="i-lucide-bell-ring inline-block size-3 me-1" />
+        {{ snoozedReopenTime(chat.snoozed_until) }}
+      </p>
       <h4
         class="conversation--user text-sm my-0 mx-2 capitalize pt-0.5 text-ellipsis overflow-hidden whitespace-nowrap flex-1 min-w-0 ltr:pr-16 rtl:pl-16 text-n-slate-12"
         :class="hasUnread ? 'font-semibold' : 'font-medium'"

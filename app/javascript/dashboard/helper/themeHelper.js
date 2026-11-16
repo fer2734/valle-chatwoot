@@ -14,4 +14,14 @@ export const setColorTheme = isOSOnDarkMode => {
     document.body.classList.remove('dark');
     document.documentElement.style.setProperty('color-scheme', 'light');
   }
+  const selectedTheme =
+    LocalStorage.get(LOCAL_STORAGE_KEYS.COLOR_THEME) || 'valle';
+  const allowedThemes = ['valle', 'ocean', 'forest', 'rose'];
+  const theme = allowedThemes.includes(selectedTheme)
+    ? selectedTheme
+    : 'valle';
+  document.body.classList.remove(
+    ...allowedThemes.map(name => `theme-${name}`)
+  );
+  document.body.classList.add(`theme-${theme}`);
 };

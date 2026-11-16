@@ -9,6 +9,7 @@
     "FAILED_TO_SEND": "Error al enviar",
     "FETCH_ERROR": "No se pudieron cargar las conversaciones. Inténtalo de nuevo.",
     "TAB_HEADING": "Conversaciones",
+    "AGENDA_HEADING": "Agenda de pendientes",
     "MENTION_HEADING": "Menciones",
     "UNATTENDED_HEADING": "Desatendido",
     "SEARCH": {

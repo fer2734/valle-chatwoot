@@ -123,6 +123,9 @@ initializeChatwootEvents();
 initializeAnalyticsEvents();
 initalizeRouter();
 
-window.onload = () => {
-  app.mount('#app');
-};
+const mountDashboard = () => app.mount('#app');
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', mountDashboard, { once: true });
+} else {
+  mountDashboard();
+}

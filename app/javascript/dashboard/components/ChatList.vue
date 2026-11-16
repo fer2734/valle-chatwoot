@@ -71,8 +71,16 @@ const { buildConversationPath, buildConversationListPath } =
 
 const resolveAttributesModalRef = ref(null);
 
-const activeAssigneeTab = ref(wootConstants.ASSIGNEE_TYPE.ME);
-const activeStatus = ref(wootConstants.STATUS_TYPE.OPEN);
+const activeAssigneeTab = ref(
+  props.conversationType === wootConstants.CONVERSATION_TYPE.AGENDA
+    ? wootConstants.ASSIGNEE_TYPE.ALL
+    : wootConstants.ASSIGNEE_TYPE.ME
+);
+const activeStatus = ref(
+  props.conversationType === wootConstants.CONVERSATION_TYPE.AGENDA
+    ? wootConstants.STATUS_TYPE.SNOOZED
+    : wootConstants.STATUS_TYPE.OPEN
+);
 const activeSortBy = ref(wootConstants.SORT_BY_TYPE.LAST_ACTIVITY_AT_DESC);
 const showAdvancedFilters = ref(false);
 // chatsOnView is to store the chats that are currently visible on the screen,
@@ -267,6 +275,9 @@ const activeTeam = computed(() => {
 });
 
 const pageTitle = computed(() => {
+  if (props.conversationType === wootConstants.CONVERSATION_TYPE.AGENDA) {
+    return t('CHAT_LIST.AGENDA_HEADING');
+  }
   if (hasAppliedFilters.value) {
     return t('CHAT_LIST.TAB_HEADING');
   }
@@ -336,6 +347,14 @@ const conversationList = computed(() => {
     localConversationList = [...chatLists.value];
   }
 
+  if (props.conversationType === wootConstants.CONVERSATION_TYPE.AGENDA) {
+    localConversationList.sort((a, b) => {
+      const nextA = new Date(a.snoozed_until || 0).getTime();
+      const nextB = new Date(b.snoozed_until || 0).getTime();
+      return nextA - nextB;
+    });
+  }
+
   if (activeFolder.value) {
     const { payload } = activeFolder.value.query;
     localConversationList = localConversationList.filter(
@@ -378,7 +397,12 @@ const uniqueInboxes = computed(() => {
 function setFiltersFromUISettings() {
   const { conversations_filter_by: filterBy = {} } = uiSettings.value;
   const { status, order_by: orderBy } = filterBy;
-  activeStatus.value = status || wootConstants.STATUS_TYPE.OPEN;
+  const isAgenda =
+    props.conversationType === wootConstants.CONVERSATION_TYPE.AGENDA;
+  activeStatus.value = isAgenda
+    ? wootConstants.STATUS_TYPE.SNOOZED
+    : status || wootConstants.STATUS_TYPE.OPEN;
+  if (isAgenda) activeAssigneeTab.value = wootConstants.ASSIGNEE_TYPE.ALL;
   activeSortBy.value = Object.values(wootConstants.SORT_BY_TYPE).includes(
     orderBy
   )
@@ -595,6 +619,11 @@ function resetAndFetchData() {
   store.dispatch('conversationPage/reset');
   store.dispatch('emptyAllConversations');
   store.dispatch('clearConversationFilters');
+  if (props.conversationType === wootConstants.CONVERSATION_TYPE.AGENDA) {
+    activeAssigneeTab.value = wootConstants.ASSIGNEE_TYPE.ALL;
+    activeStatus.value = wootConstants.STATUS_TYPE.SNOOZED;
+    store.dispatch('setChatStatusFilter', activeStatus.value);
+  }
   if (hasActiveFolders.value) {
     const payload = activeFolder.value.query;
     fetchSavedFilteredConversations(payload);
@@ -921,6 +950,7 @@ watch(appliedFilters, () => resetBulkActions());
       :is-on-expanded-layout="isOnExpandedLayout"
       :conversation-stats="conversationStats"
       :is-list-loading="chatListLoading && !conversationList.length"
+      :is-agenda-view="conversationType === 'agenda'"
       @add-folders="onClickOpenAddFoldersModal"
       @delete-folders="onClickOpenDeleteFoldersModal"
       @filters-modal="onToggleAdvanceFiltersModal"
@@ -950,7 +980,7 @@ watch(appliedFilters, () => resetBulkActions());
     />
 
     <ChatTypeTabs
-      v-if="!hasAppliedFiltersOrActiveFolders"
+      v-if="!hasAppliedFiltersOrActiveFolders && conversationType !== 'agenda'"
       :items="assigneeTabItems"
       :active-tab="activeAssigneeTab"
       is-compact

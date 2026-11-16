@@ -16,6 +16,7 @@ export default {
     MENTION: 'mention',
     PARTICIPATING: 'participating',
     UNATTENDED: 'unattended',
+    AGENDA: 'agenda',
   },
   SORT_BY_TYPE: {
     LAST_ACTIVITY_AT_ASC: 'last_activity_at_asc',

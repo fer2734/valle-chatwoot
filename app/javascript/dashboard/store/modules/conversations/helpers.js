@@ -79,6 +79,9 @@ export const applyPageFilters = (conversation, filters) => {
   const { id: chatTeamId } = team;
 
   let shouldFilter = filterByStatus(chatStatus, status);
+  if (conversationType === 'agenda') {
+    shouldFilter = shouldFilter && chatStatus === 'snoozed';
+  }
   shouldFilter = filterByInbox(shouldFilter, inboxId, chatInboxId);
   shouldFilter = filterByTeam(shouldFilter, teamId, chatTeamId);
   shouldFilter = filterByLabel(shouldFilter, labels, chatLabels);

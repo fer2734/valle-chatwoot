@@ -210,11 +210,17 @@ class ActionCableConnector extends BaseActionCableConnector {
 
   onStatusChange = data => {
     this.app.$store.dispatch('updateConversation', data);
+    if (data.status === 'snoozed') {
+      this.app.$store.dispatch('addAgenda', data);
+    }
     this.fetchConversationStats();
   };
 
   onConversationUpdated = data => {
     this.app.$store.dispatch('updateConversation', data);
+    if (data.status === 'snoozed') {
+      this.app.$store.dispatch('addAgenda', data);
+    }
     this.fetchConversationStats();
   };
 

@@ -87,7 +87,10 @@ const conversationPath = computed(() =>
       id: props.source.id,
       label: props.label,
       teamId: props.teamId,
-      conversationType: props.conversationType,
+      conversationType:
+        props.conversationType === 'agenda'
+          ? 'agenda'
+          : props.conversationType,
       foldersId: props.foldersId,
     })
   )

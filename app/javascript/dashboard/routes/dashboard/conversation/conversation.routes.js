@@ -56,6 +56,25 @@ export default {
       },
     },
     {
+      path: frontendURL('accounts/:accountId/agenda'),
+      name: 'conversation_agenda',
+      meta: { permissions: CONVERSATION_PERMISSIONS },
+      component: ConversationView,
+      props: () => ({ conversationType: 'agenda' }),
+    },
+    {
+      path: frontendURL(
+        'accounts/:accountId/agenda/conversations/:conversationId'
+      ),
+      name: 'conversation_through_agenda',
+      meta: { permissions: CONVERSATION_PERMISSIONS },
+      component: ConversationView,
+      props: route => ({
+        conversationId: route.params.conversationId,
+        conversationType: 'agenda',
+      }),
+    },
+    {
       path: frontendURL('accounts/:accountId/conversations/:conversation_id'),
       name: 'inbox_conversation',
       meta: {
