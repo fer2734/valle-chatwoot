@@ -8,7 +8,7 @@ import StatsLiveReportsContainer from './components/StatsLiveReportsContainer.vu
 </script>
 
 <template>
-  <ReportHeader :header-title="$t('OVERVIEW_REPORTS.HEADER')" />
+  <ReportHeader :header-title="$t('SIDEBAR.TODAY')" />
   <div class="flex flex-col gap-4 pb-6">
     <StatsLiveReportsContainer />
     <ConversationHeatmapContainer />
