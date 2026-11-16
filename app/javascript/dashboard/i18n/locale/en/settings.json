@@ -318,6 +318,10 @@
   "SIDEBAR": {
     "NO_ITEMS": "No items",
     "TODAY": "Today",
+    "CHATS": "Chats",
+    "SALES_NAV": "Sales",
+    "MORE": "More",
+    "SEARCH": "Search",
     "OPPORTUNITIES": "Funnels",
     "CURRENTLY_VIEWING_ACCOUNT": "Currently viewing:",
     "SWITCH": "Switch",

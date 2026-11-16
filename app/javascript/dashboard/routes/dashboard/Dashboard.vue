@@ -24,7 +24,7 @@ const FloatingCallWidget = defineAsyncComponent(
 import CopilotLauncher from 'dashboard/components-next/copilot/CopilotLauncher.vue';
 import CopilotContainer from 'dashboard/components/copilot/CopilotContainer.vue';
 
-import MobileSidebarLauncher from 'dashboard/components-next/sidebar/MobileSidebarLauncher.vue';
+import MobileSalesNavigation from 'dashboard/components-next/sidebar/MobileSalesNavigation.vue';
 import { useCallsStore } from 'dashboard/stores/calls';
 
 export default {
@@ -37,7 +37,7 @@ export default {
     CopilotLauncher,
     CopilotContainer,
     FloatingCallWidget,
-    MobileSidebarLauncher,
+    MobileSalesNavigation,
   },
   setup() {
     const upgradePageRef = ref(null);
@@ -140,25 +140,17 @@ export default {
     />
 
     <main
-      class="flex flex-1 h-full w-full min-h-0 px-0 overflow-hidden bg-n-surface-1"
+      class="flex flex-1 h-full w-full min-h-0 overflow-hidden bg-n-surface-1 px-0 pt-14 pb-16 md:pt-0 md:pb-0"
     >
       <UpgradePage
         v-show="showUpgradePage"
         ref="upgradePageRef"
         :bypass-upgrade-page="bypassUpgradePage"
-      >
-        <MobileSidebarLauncher
-          :is-mobile-sidebar-open="isMobileSidebarOpen"
-          @toggle="toggleMobileSidebar"
-        />
-      </UpgradePage>
+      />
+      <MobileSalesNavigation @open-menu="toggleMobileSidebar" />
       <template v-if="!showUpgradePage">
         <router-view />
         <CopilotLauncher />
-        <MobileSidebarLauncher
-          :is-mobile-sidebar-open="isMobileSidebarOpen"
-          @toggle="toggleMobileSidebar"
-        />
         <CopilotContainer />
         <FloatingCallWidget v-if="hasActiveCall || hasIncomingCall" />
       </template>

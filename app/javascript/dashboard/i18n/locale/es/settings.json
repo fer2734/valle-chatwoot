@@ -319,6 +319,10 @@
   "SIDEBAR": {
     "NO_ITEMS": "No hay elementos",
     "TODAY": "Hoy",
+    "CHATS": "Chats",
+    "SALES_NAV": "Ventas",
+    "MORE": "Más",
+    "SEARCH": "Buscar",
     "OPPORTUNITIES": "Embudos",
     "CURRENTLY_VIEWING_ACCOUNT": "Visualizando:",
     "SWITCH": "Cambiar",
