@@ -317,6 +317,8 @@
   },
   "SIDEBAR": {
     "NO_ITEMS": "No items",
+    "TODAY": "Today",
+    "OPPORTUNITIES": "Funnels",
     "CURRENTLY_VIEWING_ACCOUNT": "Currently viewing:",
     "SWITCH": "Switch",
     "INBOX_VIEW": "Inbox View",
