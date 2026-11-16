@@ -369,7 +369,7 @@ const newReportRoutes = () => [
 const reportRoutes = computed(() => newReportRoutes());
 
 const menuItems = computed(() => {
-  return [
+  const allItems = [
     {
       name: 'Inbox',
       label: t('SIDEBAR.INBOX'),
@@ -965,6 +965,49 @@ const menuItems = computed(() => {
         },
       ],
     },
+  ];
+
+  const inboxItem = allItems.find(item => item.name === 'Inbox');
+  const conversationsItem = allItems.find(
+    item => item.name === 'Conversation'
+  );
+  const contactsItem = allItems.find(item => item.name === 'Contacts');
+  const settingsItem = allItems.find(item => item.name === 'Settings');
+  const folderItem = conversationsItem.children.find(
+    item => item.name === 'Folders'
+  );
+
+  return [
+    {
+      name: 'Today',
+      label: t('SIDEBAR.TODAY'),
+      icon: 'i-lucide-sun',
+      to: accountScopedRoute('account_overview_reports'),
+      activeOn: ['account_overview_reports'],
+    },
+    inboxItem,
+    {
+      ...conversationsItem,
+      children: conversationsItem.children.filter(item =>
+        ['All', 'Unattended', 'Teams', 'Channels'].includes(item.name)
+      ),
+    },
+    {
+      name: 'Opportunities',
+      label: t('SIDEBAR.OPPORTUNITIES'),
+      icon: 'i-lucide-kanban',
+      activeOn: ['conversations_through_folders'],
+      collapsible: true,
+      showTreeLine: true,
+      children: folderItem.children,
+    },
+    {
+      ...contactsItem,
+      children: contactsItem.children.filter(item =>
+        ['All Contacts', 'Active'].includes(item.name)
+      ),
+    },
+    settingsItem,
   ];
 });
 </script>
